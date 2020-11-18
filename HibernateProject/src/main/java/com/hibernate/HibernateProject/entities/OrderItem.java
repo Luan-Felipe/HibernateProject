@@ -1,7 +1,7 @@
 package com.hibernate.HibernateProject.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hibernate.HibernateProject.entities.pk.OrderItemPK;
-import org.aspectj.weaver.ast.Or;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -15,7 +15,7 @@ public class OrderItem implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @EmbeddedId
-    private OrderItemPK id;
+    private OrderItemPK id = new OrderItemPK();
 
     private Integer quantity;
     private Double Price;
@@ -31,6 +31,7 @@ public class OrderItem implements Serializable {
         Price = price;
     }
 
+    @JsonIgnore
     public Order getOrder(){
         return id.getOrder();
     }
